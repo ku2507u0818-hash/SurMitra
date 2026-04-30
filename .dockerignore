@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+
+# Virtual Environment
+venv/
+env/
+.env
+
+# Models
+# DO NOT ignore the models directory! The deployment needs the pre-trained joblib files to run.
+# models/ 
+
+# OS generated files
+.DS_Store
+Thumbs.db
