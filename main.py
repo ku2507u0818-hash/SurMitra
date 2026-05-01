@@ -29,13 +29,15 @@ le = None
 @app.on_event("startup")
 def load_models():
     global clf, scaler, le
-    if os.path.exists(MODEL_PATH) and os.path.exists(SCALER_PATH) and os.path.exists(LE_PATH):
-        clf = joblib.load(MODEL_PATH)
-        scaler = joblib.load(SCALER_PATH)
-        le = joblib.load(LE_PATH)
-        print("Models loaded successfully.")
-    else:
-        print("Warning: Models not found. Run train_model.py first.")
+    if not (os.path.exists(MODEL_PATH) and os.path.exists(SCALER_PATH) and os.path.exists(LE_PATH)):
+        print("Models not found. Training model automatically...")
+        import train_model
+        train_model.train()
+        
+    clf = joblib.load(MODEL_PATH)
+    scaler = joblib.load(SCALER_PATH)
+    le = joblib.load(LE_PATH)
+    print("Models loaded successfully.")
 
 # Raga Metadata
 RAGA_METADATA = {
